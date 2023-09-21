@@ -10,11 +10,12 @@ class OutlookAuthController extends Controller
 {
     public function redirectToProvider()
     {
-        $clientId = config('services.microsoft.client_id');
-        $redirectUri = route('auth.outlook.callback');
-        $scopes = 'https://outlook.office.com/IMAP.AccessAsUser.All openid profile offline_access';
+        $clientId = env('MICROSOFT_CLIENT_ID');
+        $tenant = env('MICROSOFT_CLIENT_TENANT');
+        $redirectUri = route('token.success');
+        $scopes = 'https://ps.outlook.com/.default';
 
-        $authUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize";
+        $authUrl = "https://login.microsoftonline.com/".$tenant."/v2.0/adminconsent";
         $authUrl .= "?client_id={$clientId}";
         $authUrl .= "&redirect_uri={$redirectUri}";
         $authUrl .= "&scope={$scopes}";

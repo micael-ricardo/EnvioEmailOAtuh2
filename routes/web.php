@@ -6,25 +6,30 @@ use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\OutlookAuthController;
 
+// Caso queira Testar o Gmail descomente o Gmail e comente Rotas Outlook
 
+// Rotas Gmail OAth 2.0 
+
+// Route::get('/', function () {
+//     return redirect()->route('home');
+// });
+// // Rotas Gmail OAth 2.0
+// Route::prefix('/')->group(function(){ 
+//     Route::view('home','home')->name('home');
+//     Route::post('/get-token', [OAuthController::class, 'GerarToken'])->name('gerar.token');
+//     Route::get('/get-token', [OAuthController::class, 'SuccessToken'])->name('token.success');
+//     Route::post('/send', [MailController::class, 'doSendEmail'])->name('send.email');
+// });
+
+// Rotas Outlook OAth 2.0
 
 Route::get('/', function () {
-    return redirect()->route('home');
+    return redirect()->route('homeOutlook');
 });
-// Rotas Gmail OAth 2.0
 Route::prefix('/')->group(function(){ 
-    Route::view('home','home')->name('home');
-    Route::post('/get-token', [OAuthController::class, 'GerarToken'])->name('gerar.token');
-    Route::get('/get-token', [OAuthController::class, 'SuccessToken'])->name('token.success');
-    Route::post('/send', [MailController::class, 'doSendEmail'])->name('send.email');
+    Route::view('homeOutlook','homeOutlook')->name('homeOutlook');
+    Route::post('/auth/outlook', [OutlookAuthController::class, 'redirectToProvider'])->name('auth.outlook');
+    Route::get('/get-token', [OutlookAuthController::class, 'handleProviderCallback'])->name('token.success');
+    Route::post('/send', [MailController::class, 'doSendEmail'])->name('send');
 });
-
-// // lINK PARA ESSA ROTA  http://127.0.0.1:8000/homeOutlook
-// // Rotas Outlook OAth 2.0
-// Route::prefix('/')->group(function(){ 
-//     Route::view('homeOutlook','homeOutlook')->name('homeOutlook');
-//     Route::post('/auth/outlook', [OutlookAuthController::class, 'redirectToProvider'])->name('auth.outlook');
-//     Route::get('/auth/outlook/callback', [OutlookAuthController::class, 'handleProviderCallback'])->name('auth.outlook.callback');
-//     Route::post('/send', [MailController::class, 'doSendEmail'])->name('send');
-// });
 

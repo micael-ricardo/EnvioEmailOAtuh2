@@ -19,19 +19,15 @@
 
 Agora, copie o "ID do cliente" e a "Chave secreta do cliente" fornecidos pela API do Gmail.
 
-No seu projeto Laravel:
-
-1. Execute o comando `composer require phpmailer/phpmailer` para instalar a biblioteca PHPMailer.
-2. Execute o comando `composer require league/oauth2-google` para instalar a biblioteca OAuth2 do Google.
-3. No arquivo `.env`, insira as seguintes variáveis de ambiente:
-   ```
-   GMAIL_API_CLIENT_ID=ID do cliente(Dados que voce copiou)
-   GMAIL_API_CLIENT_SECRET=Chave secreta do cliente(Dados que voce copiou)
-   ```
-4. No arquivo `web.php`, adicione as rotas e lógica necessárias para a autenticação com o Gmail.
-
-Lembre-se de voltar à página da API e publicar o seu aplicativo na "Tela de permissão" após concluir as etapas acima.
-
-
-
 ## Criar API de autenticação 2.0 do Outlook
+
+1. Acesse o portal de desenvolvedores da Microsoft: [https://portal.azure.com].
+2. Faça login com sua conta da Microsoft.
+3. No menu à esquerda, clique em "Azure Active Directory".
+4. Selecione "Registro de aplicativos" e clique em "Novo registro".
+5. Dê um nome ao seu aplicativo e selecione o tipo de conta que deseja usar (pessoal, empresarial ou escolar).
+6. Na seção "URI de redirecionamento", adicione a URI de redirecionamento do seu aplicativo Laravel, por exemplo: `http://localhost:8000/get-token`.
+7. Clique em "Registrar" para criar o aplicativo.
+8. Na página de visão geral do aplicativo, anote o ID do aplicativo (Client ID) e o ID do diretório (locatário).
+9. Na seção "Configurações", clique em "Adicionar plataforma" e selecione "Aplicativo Web".
+10. Adicione a URI de redirecionamento novamente na seção "URI de redirecionamento" e salve as alterações.
