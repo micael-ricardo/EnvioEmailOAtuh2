@@ -31,3 +31,6 @@ Agora, copie o "ID do cliente" e a "Chave secreta do cliente" fornecidos pela AP
 8. Na página de visão geral do aplicativo, anote o ID do aplicativo (Client ID) e o ID do diretório (locatário).
 9. Na seção "Configurações", clique em "Adicionar plataforma" e selecione "Aplicativo Web".
 10. Adicione a URI de redirecionamento novamente na seção "URI de redirecionamento" e salve as alterações.
+
+
+## Para testar o do outlook devemos startar o servidor com esse comando: php artisan serve --port=7000 --host=localhost

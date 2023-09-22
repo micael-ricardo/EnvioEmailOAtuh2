@@ -5,7 +5,7 @@
         <h3>Gerar token e enviar email</h3>
     </div>
     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm flex justify-between">
-        <form action="{{ route('auth.outlook') }}" method="post" class="mr-2">
+        <form action="{{ route('gerar.token') }}" method="post" class="mr-2">
             @csrf
             <button type="submit" class="cursor p-2 px-6 bg-gray-900 text-gray-600 font-semibold">Gerar Token</button>
         </form>
