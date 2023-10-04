@@ -26,7 +26,7 @@ Agora, copie o "ID do cliente" e a "Chave secreta do cliente" fornecidos pela AP
 3. No menu à esquerda, clique em "Azure Active Directory".
 4. Selecione "Registro de aplicativos" e clique em "Novo registro".
 5. Dê um nome ao seu aplicativo e selecione o tipo de conta que deseja usar (pessoal, empresarial ou escolar).
-6. Na seção "URI de redirecionamento", adicione a URI de redirecionamento do seu aplicativo Laravel, por exemplo: `http://localhost:8000/get-token`.
+6. Na seção "URI de redirecionamento", adicione a URI de redirecionamento do seu aplicativo Laravel, por exemplo: `http://localhost:7000/get-token`.
 7. Clique em "Registrar" para criar o aplicativo.
 8. Na página de visão geral do aplicativo, anote o ID do aplicativo (Client ID) e o ID do diretório (locatário).
 9. Na seção "Configurações", clique em "Adicionar plataforma" e selecione "Aplicativo Web".

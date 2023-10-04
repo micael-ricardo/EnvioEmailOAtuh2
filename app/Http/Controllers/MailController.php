@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use League\OAuth2\Client\Provider\Google;
 use PHPMailer\PHPMailer\Exception;
@@ -21,14 +20,14 @@ class MailController extends Controller
 
     public function __construct()
     {
-        $this->email            = 'micael.ricardo1997@gmail.com'; 
-        $this->email_name       = 'Micael Barickshinicovs';    
-        $this->client_id        = env('GMAIL_API_CLIENT_ID');
-        $this->client_secret    = env('GMAIL_API_CLIENT_SECRET');
-        $this->provider         = new Google(
+        $this->email = 'micael.ricardo1997@gmail.com';
+        $this->email_name = 'Micael Barickshinicovs';
+        $this->client_id = env('GMAIL_API_CLIENT_ID');
+        $this->client_secret = env('GMAIL_API_CLIENT_SECRET');
+        $this->provider = new Google(
             [
-                'clientId'      => $this->client_id,
-                'clientSecret'  => $this->client_secret
+                'clientId' => $this->client_id,
+                'clientSecret' => $this->client_secret,
             ]
         );
 
@@ -36,8 +35,7 @@ class MailController extends Controller
 
     public function doSendEmail(Request $request)
     {
-        $this->token = $request->get('oauth_token');
-
+        $token = $request->session()->get('token');
         $mail = new PHPMailer(true);
 
         try {
@@ -51,15 +49,13 @@ class MailController extends Controller
             $mail->setOAuth(
                 new OAuth(
                     [
-                        'provider'          => $this->provider,
-                        'clientId'          => $this->client_id,
-                        'clientSecret'      => $this->client_secret,
-                        'refreshToken'      => $this->token,
-                        'userName'          => $this->email
+                        'provider' => $this->provider,
+                        'clientId' => $this->client_id,
+                        'clientSecret' => $this->client_secret,
+                        'refreshToken' => $token,
+                        'userName' => $this->email,
                     ]
-                )
-            );
-
+                ));
             $mail->setFrom($this->email, $this->name);
             $mail->addAddress('micael.ricardo@outlook.com', 'Micael');
             $mail->Subject = 'Laravel PHPMailer OAuth2 Integration';
@@ -67,12 +63,12 @@ class MailController extends Controller
             $body = '<br><br> Teste OAuth2  .<br><br>Email Teste,<br><b>Micael Ricardo</b>';
             $mail->msgHTML($body);
             $mail->AltBody = 'Este é o corpo de uma mensagem de texto simples';
-            if( $mail->send() ) {
+            if ($mail->send()) {
                 return redirect()->back()->with('success', 'Email enviado!');
             } else {
                 return redirect()->back()->with('error', 'Não é possível enviar e-mail.');
             }
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->with('error', 'Exception: ' . $e->getMessage());
         }
     }

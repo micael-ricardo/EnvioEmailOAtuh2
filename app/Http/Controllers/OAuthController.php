@@ -53,10 +53,13 @@ class OAuthController extends Controller
                     'code' => $code,
                 ]
             );
+
             $token = $tokenObj->getToken();
+
             $refresh_token = $tokenObj->getRefreshToken();
             if ($refresh_token != null && !empty($refresh_token)) {
-                return redirect()->back()->with('token', $refresh_token);
+                return redirect()->action([MailController::class, 'doSendEmail']);
+                // return redirect()->back()->with('token', $refresh_token);
             } elseif ($token != null && !empty($token)) {
                 $request->session()->put('token', $token);
                 return redirect()->back();
@@ -69,4 +72,6 @@ class OAuthController extends Controller
             return redirect()->back()->with('error', 'Exception: ' . $e->getMessage());
         }
     }
+
+
 }

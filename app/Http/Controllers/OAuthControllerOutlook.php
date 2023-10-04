@@ -1,8 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use TheNetworg\OAuth2\Client\Provider\Azure;
+use TheNetworg\OAuth2\Client\Provider\Exception\IdentityProviderException;
 
 class OAuthControllerOutlook extends Controller
 {
@@ -55,6 +57,7 @@ class OAuthControllerOutlook extends Controller
             $tokenObj = $provider->getAccessToken('authorization_code', [
                 'code' => $code,
             ]);
+            
             $token = $tokenObj->getToken();
             $refresh_token = $tokenObj->getRefreshToken();
             if ($refresh_token != null && !empty($refresh_token)) {
@@ -63,13 +66,12 @@ class OAuthControllerOutlook extends Controller
                 $request->session()->put('token', $token);
                 return redirect()->back();
             } else {
-                return redirect()->back()->with('error', 'Unable to retreive token.');
+                return redirect()->back()->with('error', 'Unable to retrieve token.');
             }
         } catch (IdentityProviderException $e) {
             return redirect()->back()->with('error', 'Exception: ' . $e->getMessage());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Exception: ' . $e->getMessage());
         }
     }
-
 }

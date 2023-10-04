@@ -10,25 +10,25 @@ use Illuminate\Support\Facades\Route;
 
 // Rotas Gmail OAth 2.0
 
-// Route::get('/', function () {
-//     return redirect()->route('home');
-// });
-// // Rotas Gmail OAth 2.0
-// Route::prefix('/')->group(function(){
-//     Route::view('home','home')->name('home');
-//     Route::post('/get-token', [OAuthController::class, 'GerarToken'])->name('gerar.token');
-//     Route::get('/get-token', [OAuthController::class, 'SuccessToken'])->name('token.success');
-//     Route::post('/send', [MailController::class, 'doSendEmail'])->name('send.email');
-// });
+Route::get('/', function () {
+    return redirect()->route('home');
+});
+// Rotas Gmail OAth 2.0
+Route::prefix('/')->group(function(){
+    Route::view('home','home')->name('home');
+    Route::post('/get-token', [OAuthController::class, 'GerarToken'])->name('gerar.token');
+    Route::get('/get-token', [OAuthController::class, 'SuccessToken'])->name('token.success');
+    Route::post('/enviar', [MailController::class, 'doSendEmail'])->name('send.email');
+});
 
 // Rotas Outlook OAth 2.0
 
-Route::get('/', function () {
-    return redirect()->route('homeOutlook');
-});
-Route::prefix('/')->group(function () {
-    Route::view('homeOutlook', 'homeOutlook')->name('homeOutlook');
-    Route::post('/get-token', [OAuthControllerOutlook::class, 'GerarToken'])->name('gerar.token');
-    Route::get('/get-token', [OAuthControllerOutlook::class, 'SuccessToken'])->name('token.success');
-    Route::post('/send', [EmailController::class, 'doSendEmail'])->name('send');
-});
+// Route::get('/', function () {
+//     return redirect()->route('homeOutlook');
+// });
+// Route::prefix('/')->group(function () {
+//     Route::view('homeOutlook', 'homeOutlook')->name('homeOutlook');
+//     Route::post('/get-token', [OAuthControllerOutlook::class, 'GerarToken'])->name('gerar.token');
+//     Route::get('/get-token', [OAuthControllerOutlook::class, 'SuccessToken'])->name('token.success');
+//     Route::post('/send', [EmailController::class, 'doSendEmail'])->name('send');
+// });
