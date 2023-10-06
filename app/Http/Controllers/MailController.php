@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Controllers\OAuthSendController;
 use Illuminate\Http\Request;
 use League\OAuth2\Client\Provider\Google;
 use PHPMailer\PHPMailer\Exception;
@@ -33,9 +35,23 @@ class MailController extends Controller
 
     }
 
+    public function sendEmail(Request $request)
+    {
+        $oauthController = new OAuthSendController($request);
+
+        // dd($oauthController);
+
+        $oauthController->GerarToken($request);
+        $mailController = new MailController();
+        // dd($request);
+
+        return $mailController->doSendEmail($request);
+    }
+
     public function doSendEmail(Request $request)
     {
         $token = $request->session()->get('token');
+
         $mail = new PHPMailer(true);
 
         try {

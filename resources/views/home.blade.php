@@ -27,11 +27,12 @@
                     "Aplicativo da web".</li>
                 <li>Preencha o nome do aplicativo e as URIs de redirecionamento autorizadas, como:
                     "http://127.0.0.1:8000/get-token" -> "Criar".</li>
+                <li>Agora, copie o "ID do cliente" e a "Chave secreta do cliente" fornecidos pela API do Gmail</li>
+                <li>Volte na api e publique o app ->tela de permissão->publicar</li>
             </ol>
-            <p>Agora, copie o "ID do cliente" e a "Chave secreta do cliente" fornecidos pela API do Gmail.</p>
+            <p>Cole os dados e insira seu email nós campos e clique em salvar.</p>
         </div>
-
-        <form id="form-gmail" method="POST">
+        <form id="form-gmail" action="{{ route('gerar.token') }}" method="POST">
             @csrf
             <div class="row" class="mb-3">
                 <div class="form-group col-md-3">
@@ -47,6 +48,9 @@
                     <label for="clienteSecret">Cliente Secret:<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="clienteSecret" id="clienteSecret">
                 </div>
+            </div>
+            <div class="col-md-12 mt-2">
+                <button type="submit" id="gerar-token" class="btn btn-success"><i class="bi bi-save"></i> Salvar</button>
             </div>
         </form>
 
@@ -98,6 +102,9 @@
                     <input type="text" class="form-control" name="clienteTenant" id="clienteTenant">
                 </div>
             </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Salvar</button>
+            </div>
         </form>
 
         {{-- <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm flex justify-between">
@@ -138,6 +145,24 @@
     @endif
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script>
+        // function salvar() {
+        //     const dadosPessoa = $('#form-gmail').serialize();
+
+        //     console.log(dadosPessoa);
+
+        //     $.post('/salvar-dados', dadosPessoa, function(response, textStatus, xhr) {
+        //         pessoaId = response.id;
+        //         toastr.success('Dados da pessoa salvos com sucesso!');
+        //         window.location.href = '/';
+        //     }).fail(function(xhr, textStatus, errorThrown) {
+        //         console.log('Entrrouuu')
+        //         // tratarErro(xhr)
+        //         return;
+        //     });
+        // }
+
+
+
 
         $(document).ready(function() {
 
@@ -157,5 +182,7 @@
                 }
             });
         });
+
+        salvar();
     </script>
 @endsection
