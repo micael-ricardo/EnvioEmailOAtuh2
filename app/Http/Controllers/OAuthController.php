@@ -20,11 +20,11 @@ class OAuthController extends Controller
     {
         $this->client_id = env('GMAIL_API_CLIENT_ID');
         $this->client_secret = env('GMAIL_API_CLIENT_SECRET');
-        $this->redirect_uri = route('token.success');
+        $this->redirect_uri =   route('token.success');
         $this->google_options = [
             'scope' => [
                 'https://mail.google.com/',
-            ],
+            ],  
         ];
         $params = [
             'clientId' => $this->client_id,

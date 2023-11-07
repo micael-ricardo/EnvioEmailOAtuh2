@@ -6,10 +6,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "google/apiclient": "^2.15",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
-        "laravel/socialite": "^5.9",
+        "laravel/socialite": "^5.10",
         "laravel/tinker": "^2.8",
         "league/oauth2-client": "^2.7",
         "league/oauth2-google": "^4.0",
